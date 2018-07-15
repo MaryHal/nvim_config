@@ -66,7 +66,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/denite.nvim'
 
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-rooter'
 
 Plug 'MaryHal/Apprentice'
@@ -91,16 +91,10 @@ Plug 'tpope/vim-unimpaired'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'rust-lang/rust.vim'
-Plug 'tweekmonster/django-plus.vim'
 
 Plug 'editorconfig/editorconfig-vim'
 
 if !exists('g:gui_oni')
-    " Plug 'prabirshrestha/async.vim'
-    " Plug 'prabirshrestha/vim-lsp'
-    " Plug 'prabirshrestha/asyncomplete.vim'
-    " Plug 'prabirshrestha/asyncomplete-lsp.vim'
-
     Plug 'w0rp/ale'
 endif
 
@@ -146,7 +140,7 @@ set completeopt=menuone,noselect,preview
 
 " show list for autocomplete
 set wildmenu
-set wildmode=list:full
+set wildmode=list:longest
 set wildignorecase
 
 " Always show current position
@@ -234,16 +228,8 @@ if has('autocmd')
         autocmd!
     augroup END
 
-    " augroup MyAutoCmd
-    "     if !s:is_gui
-    "         autocmd ColorScheme * call RemoveBackground()
-    "     endif
-    " augroup END
-
     autocmd BufLeave * let b:winview = winsaveview()
     autocmd BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
-
-    autocmd BufNewFile,BufRead *.tera set filetype=htmldjango
 endif
 
 " ====================
@@ -391,14 +377,6 @@ nnoremap          <leader>g :<C-u>Gstatus<CR>
 
 command! -nargs=0 Jq :%!jq "."
 
-" if executable('rls')
-"     au User lsp_setup call lsp#register_server({
-"                 \ 'name': 'rls',
-"                 \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
-"                 \ 'whitelist': ['rust'],
-"                 \ })
-" endif 
-
 let g:targets_argOpening = '[({[]'
 let g:targets_argClosing = '[]})]'
 
@@ -420,6 +398,7 @@ call denite#custom#map(
 nnoremap <silent> <leader>u :<C-u>Denite buffer<CR>
 nnoremap <silent> <leader>f :<C-u>Denite file<CR>
 nnoremap <silent> <leader>p :<C-u>Denite file_rec<CR>
+nnoremap <silent> <C-p> :<C-u>Denite file_rec<CR>
 nnoremap <silent> <leader>l :<C-u>Denite line<CR>
 nnoremap <silent> <leader>x :<C-u>Denite command<CR>
 nnoremap <silent> <M-x>     :<C-u>Denite command<CR>
@@ -434,9 +413,17 @@ augroup END
 " => Auto-Complete
 " ====================
 
+" if executable('rls')
+"     au User lsp_setup call lsp#register_server({
+"                 \ 'name': 'rls',
+"                 \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+"                 \ 'whitelist': ['rust'],
+"                 \ })
+" endif 
+
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ }
+            \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+            \ }
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
