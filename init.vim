@@ -63,7 +63,14 @@ Plug 'autozimu/LanguageClient-neovim', {
             \ 'do': 'powershell -executionpolicy bypass -File install.ps1',
             \ }
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
 Plug 'Shougo/denite.nvim'
 
 Plug 'mhinz/vim-signify'
@@ -136,11 +143,11 @@ set scrolloff=10
 set sidescrolloff=5
 
 " Auto complete setting
-set completeopt=menuone,noselect,preview
+set completeopt=menuone,noselect
 
 " show list for autocomplete
 set wildmenu
-set wildmode=list:longest
+set wildmode=list,full
 set wildignorecase
 
 " Always show current position
@@ -157,7 +164,9 @@ set nohlsearch " Don't Highlight search things
 set incsearch  " Make search act like search in modern browsers
 set wrapscan   " Search wraps around the end of the file
 
-set inccommand=nosplit
+if has('nvim')
+    set inccommand=nosplit
+endif
 
 if executable('rg')
     set grepprg=rg\ --vimgrep
@@ -390,7 +399,19 @@ call denite#custom#map(
             \)
 call denite#custom#map(
             \ 'insert',
+            \ '<C-n>',
+            \ '<denite:move_to_next_line>',
+            \ 'noremap'
+            \)
+call denite#custom#map(
+            \ 'insert',
             \ '<C-k>',
+            \ '<denite:move_to_previous_line>',
+            \ 'noremap'
+            \)
+call denite#custom#map(
+            \ 'insert',
+            \ '<C-p>',
             \ '<denite:move_to_previous_line>',
             \ 'noremap'
             \)
@@ -432,6 +453,7 @@ nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 let g:deoplete#enable_at_startup = 1
+let g:python3_host_prog = 'python'
 
 " ====================
 " => FZF
