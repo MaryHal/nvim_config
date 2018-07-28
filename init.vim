@@ -297,6 +297,9 @@ let mapleader = "\<Space>"
 
 nnoremap Y yg_
 
+nnoremap <silent> <leader><leader> "*
+vnoremap <silent> <leader><leader> "*
+
 cmap W!! w !sudo tee % >/dev/null
 
 silent! command -nargs=0 W w
