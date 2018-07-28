@@ -75,6 +75,7 @@ Plug 'Shougo/denite.nvim'
 
 Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-rooter'
+Plug 'mbbill/undotree'
 
 Plug 'MaryHal/Apprentice'
 Plug 'MaryHal/vim-colors-plain'
