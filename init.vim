@@ -71,14 +71,15 @@ else
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
-Plug 'Shougo/denite.nvim'
-
 Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-rooter'
 Plug 'mbbill/undotree'
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 'mhinz/vim-startify'
 
 Plug 'MaryHal/Apprentice'
 Plug 'MaryHal/vim-colors-plain'
+Plug 'NLKNguyen/papercolor-theme'
 
 Plug 'junegunn/vim-peekaboo'
 
@@ -381,6 +382,8 @@ endif
 " ====================
 " => Plugin Settings
 " ====================
+let g:bookmark_no_default_key_mappings = 1
+
 nnoremap <silent> <leader>eb :<C-u>so %<CR>
 vnoremap <silent> <leader>er :<C-u>@*<CR>
 
@@ -393,40 +396,40 @@ command! -nargs=0 Jq :%!jq "."
 let g:targets_argOpening = '[({[]'
 let g:targets_argClosing = '[]})]'
 
-call denite#custom#var('file_rec', 'command', ['fd', ''])
+" call denite#custom#var('file_rec', 'command', ['fd', ''])
 
-call denite#custom#map(
-            \ 'insert',
-            \ '<C-j>',
-            \ '<denite:move_to_next_line>',
-            \ 'noremap'
-            \)
-call denite#custom#map(
-            \ 'insert',
-            \ '<C-n>',
-            \ '<denite:move_to_next_line>',
-            \ 'noremap'
-            \)
-call denite#custom#map(
-            \ 'insert',
-            \ '<C-k>',
-            \ '<denite:move_to_previous_line>',
-            \ 'noremap'
-            \)
-call denite#custom#map(
-            \ 'insert',
-            \ '<C-p>',
-            \ '<denite:move_to_previous_line>',
-            \ 'noremap'
-            \)
+" call denite#custom#map(
+"             \ 'insert',
+"             \ '<C-j>',
+"             \ '<denite:move_to_next_line>',
+"             \ 'noremap'
+"             \)
+" call denite#custom#map(
+"             \ 'insert',
+"             \ '<C-n>',
+"             \ '<denite:move_to_next_line>',
+"             \ 'noremap'
+"             \)
+" call denite#custom#map(
+"             \ 'insert',
+"             \ '<C-k>',
+"             \ '<denite:move_to_previous_line>',
+"             \ 'noremap'
+"             \)
+" call denite#custom#map(
+"             \ 'insert',
+"             \ '<C-p>',
+"             \ '<denite:move_to_previous_line>',
+"             \ 'noremap'
+"             \)
 
-nnoremap <silent> <leader>u :<C-u>Denite buffer<CR>
-nnoremap <silent> <leader>f :<C-u>Denite file<CR>
-nnoremap <silent> <leader>p :<C-u>Denite file_rec<CR>
-nnoremap <silent> <C-p> :<C-u>Denite file_rec<CR>
-nnoremap <silent> <leader>l :<C-u>Denite line<CR>
-nnoremap <silent> <leader>x :<C-u>Denite command<CR>
-nnoremap <silent> <M-x>     :<C-u>Denite command<CR>
+" nnoremap <silent> <leader>u :<C-u>Denite buffer<CR>
+" nnoremap <silent> <leader>f :<C-u>Denite file<CR>
+" nnoremap <silent> <leader>p :<C-u>Denite file_rec<CR>
+" nnoremap <silent> <C-p> :<C-u>Denite file_rec<CR>
+" nnoremap <silent> <leader>l :<C-u>Denite line<CR>
+" nnoremap <silent> <leader>x :<C-u>Denite command<CR>
+" nnoremap <silent> <M-x>     :<C-u>Denite command<CR>
 
 let g:matchup_matchparen_nomode = 'i'
 augroup matchup_highlight
@@ -519,10 +522,11 @@ let g:rg_command = '
 
 command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
 
-" nnoremap <silent> <leader>u :<C-u>Buffers<CR>
-" nnoremap <silent> <leader>f :<C-u>Files<CR>
-" nnoremap <silent> <leader>p :<C-u>GFiles<CR>
-" nnoremap <silent> <leader>l :<C-u>BLines<CR>
-" nnoremap <silent> <leader>x :<C-u>Commands<CR>
-" nnoremap <silent> <M-x>     :<C-u>Commands<CR>
+nnoremap <silent> <leader>u :<C-u>Buffers<CR>
+nnoremap <silent> <leader>f :<C-u>Files<CR>
+nnoremap <silent> <leader>p :<C-u>GFiles<CR>
+nnoremap <silent> <C-p>     :<C-u>GFiles<CR>
+nnoremap <silent> <leader>l :<C-u>BLines<CR>
+nnoremap <silent> <leader>x :<C-u>Commands<CR>
+nnoremap <silent> <M-x>     :<C-u>Commands<CR>
 
