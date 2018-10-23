@@ -396,41 +396,6 @@ command! -nargs=0 Jq :%!jq "."
 let g:targets_argOpening = '[({[]'
 let g:targets_argClosing = '[]})]'
 
-" call denite#custom#var('file_rec', 'command', ['fd', ''])
-
-" call denite#custom#map(
-"             \ 'insert',
-"             \ '<C-j>',
-"             \ '<denite:move_to_next_line>',
-"             \ 'noremap'
-"             \)
-" call denite#custom#map(
-"             \ 'insert',
-"             \ '<C-n>',
-"             \ '<denite:move_to_next_line>',
-"             \ 'noremap'
-"             \)
-" call denite#custom#map(
-"             \ 'insert',
-"             \ '<C-k>',
-"             \ '<denite:move_to_previous_line>',
-"             \ 'noremap'
-"             \)
-" call denite#custom#map(
-"             \ 'insert',
-"             \ '<C-p>',
-"             \ '<denite:move_to_previous_line>',
-"             \ 'noremap'
-"             \)
-
-" nnoremap <silent> <leader>u :<C-u>Denite buffer<CR>
-" nnoremap <silent> <leader>f :<C-u>Denite file<CR>
-" nnoremap <silent> <leader>p :<C-u>Denite file_rec<CR>
-" nnoremap <silent> <C-p> :<C-u>Denite file_rec<CR>
-" nnoremap <silent> <leader>l :<C-u>Denite line<CR>
-" nnoremap <silent> <leader>x :<C-u>Denite command<CR>
-" nnoremap <silent> <M-x>     :<C-u>Denite command<CR>
-
 let g:matchup_matchparen_nomode = 'i'
 augroup matchup_highlight
     autocmd!
