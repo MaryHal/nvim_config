@@ -1,6 +1,6 @@
 if has('nvim')
     GuiFont! Iosevka Term Slab:h9
-    " Guifont PragmataPro:h9
+    GuiLinespace 1
 else
     set guifont=Iosevka_Term_Slab:h9
     set guioptions=acg
