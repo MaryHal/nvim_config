@@ -402,6 +402,8 @@ augroup matchup_highlight
     autocmd ColorScheme * hi MatchParen gui=italic cterm=italic
 augroup END
 
+let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'} ]
+
 " ====================
 " => Auto-Complete
 " ====================
