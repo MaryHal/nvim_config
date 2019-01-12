@@ -58,18 +58,13 @@ call plug#begin(expand(s:dotvim . 'plugged'))
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
-Plug 'autozimu/LanguageClient-neovim', {
-            \ 'branch': 'next',
-            \ 'do': 'powershell -executionpolicy bypass -File install.ps1',
-            \ }
-
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
+if !has('nvim')
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
+Plug 'Shougo/neco-vim'
+Plug 'neoclide/coc-neco'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
 Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-rooter'
@@ -358,9 +353,15 @@ function! CustomStatusLine()
         set statusline+=\ %y
         set statusline+=%=%-14.(%l,%c%V%)\ %p%%\ 
 
-        set statusline+=\%#StatusLineOk#%{ALEStatus()}
-        set statusline+=\%#StatusLineError#%{ALEErrors()}
-        set statusline+=\%#StatusLineWarning#%{ALEWarnings()}
+        if g:ale_enabled
+            set statusline+=\%#StatusLineOk#%{ALEStatus()}
+            set statusline+=\%#StatusLineError#%{ALEErrors()}
+            set statusline+=\%#StatusLineWarning#%{ALEWarnings()}
+        endif
+
+        if g:coc_enabled
+            set statusline+=%{coc#status()}
+        endif
     endif
 endfunction
 
@@ -408,25 +409,11 @@ let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'} ]
 " => Auto-Complete
 " ====================
 
-" if executable('rls')
-"     au User lsp_setup call lsp#register_server({
-"                 \ 'name': 'rls',
-"                 \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
-"                 \ 'whitelist': ['rust'],
-"                 \ })
-" endif 
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
-let g:LanguageClient_serverCommands = {
-            \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-            \ }
-
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-
-let g:deoplete#enable_at_startup = 1
 let g:python3_host_prog = 'python'
 
 " ====================
