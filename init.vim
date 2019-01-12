@@ -404,6 +404,17 @@ let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'} ]
 " => Auto-Complete
 " ====================
 
+command! -nargs=0 Format :call CocAction('format')
+command! -nargs=? Fold :call CocAction('fold', <f-args>)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+inoremap <silent><expr> <c-space> coc#refresh()
+
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
