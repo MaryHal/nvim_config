@@ -78,7 +78,6 @@ Plug 'NLKNguyen/papercolor-theme'
 
 Plug 'junegunn/vim-peekaboo'
 
-Plug 'jreybert/vimagit'
 Plug 'lambdalisue/gina.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
