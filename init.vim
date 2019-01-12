@@ -352,11 +352,11 @@ function! CustomStatusLine()
 
         set statusline+=\ %y
         set statusline+=%=%-14.(%l,%c%V%)\ %p%%\ 
-        set statusline+=\%#StatusLineOk#%{g:ale_enabled==1?ALEStatus():''}
-        set statusline+=\%#StatusLineError#%{g:ale_enabled==1?ALEErrors():''}
-        set statusline+=\%#StatusLineWarning#%{g:ale_enabled==1?ALEWarnings():''}
+        set statusline+=\%#StatusLineOk#%{ALEStatus()}
+        set statusline+=\%#StatusLineError#%{ALEErrors()}
+        set statusline+=\%#StatusLineWarning#%{ALEWarnings()}
 
-        set statusline+=%{g:coc_enabled==1?coc#status():''}
+        set statusline+=%{coc#status()}
     endif
 endfunction
 
