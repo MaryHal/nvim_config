@@ -118,7 +118,7 @@ set mousehide
 set autoread
 set autowrite
 
-set foldcolumn=1
+set foldcolumn=0
 
 " ====================
 " => User Interface
@@ -127,6 +127,8 @@ set shortmess=Iatc
 
 " Blank vsplit separator
 set fillchars+=vert:\ 
+
+set signcolumn=yes
 
 " Ask for confirmation for various things
 set confirm
