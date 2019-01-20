@@ -357,7 +357,7 @@ function! CustomStatusLine()
         set statusline+=\%#StatusLineError#%{ALEErrors()}
         set statusline+=\%#StatusLineWarning#%{ALEWarnings()}
 
-        set statusline+=%{coc#status()}
+        set statusline+=%{coc#status()}\ 
     endif
 endfunction
 
@@ -387,6 +387,8 @@ vnoremap <silent> <leader>er :<C-u>@*<CR>
 " Change cwd to current buffer directory
 nnoremap          <leader>c :<C-u>cd %:p:h<CR>
 nnoremap          <leader>g :<C-u>Gstatus<CR>
+nnoremap          <leader>s :<C-u>Startify<CR>
+
 
 command! -nargs=0 Jq :%!jq "."
 
