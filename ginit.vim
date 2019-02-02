@@ -1,9 +1,9 @@
 if has('nvim')
-    GuiFont! Iosevka Term Slab:h9
+    GuiFont! Sarasa Mono J:h9
     GuiLinespace 1
     GuiLinespace 0
 else
-    set guifont=Iosevka_Term_Slab:h9
+    set guifont=Sarasa_Mono_J:h9
     set guioptions=acg
 endif
 
