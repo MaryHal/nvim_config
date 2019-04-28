@@ -84,6 +84,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
 
+Plug 'haya14busa/vim-edgemotion'
 Plug 'machakann/vim-sandwich'
 
 Plug 'andymass/vim-matchup'
@@ -91,6 +92,7 @@ Plug 'wellle/targets.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'romainl/vim-qf'
 Plug 'tpope/vim-unimpaired'
+Plug 'justinmk/vim-gtfo'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'rust-lang/rust.vim'
@@ -389,6 +391,8 @@ nnoremap          <leader>c :<C-u>cd %:p:h<CR>
 nnoremap          <leader>g :<C-u>Gstatus<CR>
 nnoremap          <leader>s :<C-u>Startify<CR>
 
+map <C-j> <Plug>(edgemotion-j)
+map <C-k> <Plug>(edgemotion-k)
 
 command! -nargs=0 Jq :%!jq "."
 
