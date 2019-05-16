@@ -1,7 +1,8 @@
 if has('nvim')
-    GuiFont! Sarasa Mono J:h9
+    set guifont=Iosevka\ Slab:h9
     GuiLinespace 1
     GuiTabline 0
+    GuiPopupmenu 0
 else
     set guifont=Sarasa_Mono_J:h9
     set guioptions=acg
