@@ -66,6 +66,8 @@ Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
+Plug 'w0rp/ale'
+
 Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-rooter'
 Plug 'mbbill/undotree'
@@ -99,11 +101,6 @@ Plug 'rust-lang/rust.vim'
 
 Plug 'editorconfig/editorconfig-vim'
 
-if !exists('g:gui_oni')
-    Plug 'w0rp/ale'
-endif
-
-" Initialize plugin system
 call plug#end()
 
 " ====================
@@ -183,6 +180,8 @@ set nomodeline
 set modelines=0
 
 set lazyredraw
+
+set updatetime=300
 
 " ====================
 " => Formatting
@@ -363,20 +362,16 @@ function! CustomStatusLine()
     endif
 endfunction
 
-if exists('g:gui_oni')
-    " Turn off statusbar, because it is externalized
-    set noshowmode
-    set noruler
-    set laststatus=0
-    set noshowcmd
-else
-    exec CustomStatusLine()
+highlight link CocErrorSign StatusLineError
+highlight link CocWarningSign StatusLineWarning
+highlight link CocInfoSign StatusLineOk
 
-    set laststatus=2
+exec CustomStatusLine()
 
-    " Show incomplete commands
-    set showcmd
-endif   
+set laststatus=2
+
+" Show incomplete commands
+set showcmd
 
 " ====================
 " => Plugin Settings
@@ -410,6 +405,8 @@ let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'} ]
 " ====================
 " => Auto-Complete
 " ====================
+
+let g:coc_global_extensions = ['coc-snippets', 'coc-tsserver', 'coc-rls', 'coc-json', 'coc-css']
 
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
@@ -474,6 +471,18 @@ let g:fzf_history_dir = expand(s:dotvim . '/cache/fzf_history')
 
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
+
+command! -bang -nargs=* Rg
+            \ call fzf#vim#grep(
+            \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \   <bang>0)
+
+let g:rg_command = '
+            \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
+            \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf}"
+            \ -g "!{.git,node_modules,vendor}/*" '
 
 command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
 
