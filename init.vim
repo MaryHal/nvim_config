@@ -248,7 +248,11 @@ set splitbelow
 
 set switchbuf=usetab
 
-nnoremap <silent> <leader>k :<C-u>bw<CR>
+" move lines around
+nnoremap <leader>j :m+<cr>==
+nnoremap <leader>k :m-2<cr>==
+xnoremap <leader>j :m'>+<cr>gv=gv
+xnoremap <leader>k :m-2<cr>gv=gv
 
 nmap K kJ
 
@@ -406,7 +410,7 @@ let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'} ]
 " => Auto-Complete
 " ====================
 
-let g:coc_global_extensions = ['coc-snippets', 'coc-tsserver', 'coc-rls', 'coc-json', 'coc-css']
+let g:coc_global_extensions = ['coc-snippets', 'coc-tsserver', 'coc-rls', 'coc-css']
 
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
