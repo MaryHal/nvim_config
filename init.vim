@@ -86,7 +86,9 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
 
+Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/vim-edgemotion'
+Plug 'haya14busa/incsearch.vim'
 Plug 'machakann/vim-sandwich'
 
 Plug 'andymass/vim-matchup'
@@ -157,9 +159,9 @@ set backspace=indent,eol,start
 set ignorecase " Ignore case when searching
 set smartcase  " If there are any capitalized letters, case sensitive search
 
-set nohlsearch " Don't Highlight search things
-set incsearch  " Make search act like search in modern browsers
-set wrapscan   " Search wraps around the end of the file
+set hlsearch
+set incsearch
+set wrapscan
 
 if has('nvim')
     set inccommand=nosplit
@@ -392,6 +394,22 @@ nnoremap          <leader>s :<C-u>Startify<CR>
 
 map <C-j> <Plug>(edgemotion-j)
 map <C-k> <Plug>(edgemotion-k)
+
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
+nmap <leader>w <Plug>(easymotion-bd-f2)
+
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
 
 command! -nargs=0 Jq :%!jq "."
 
