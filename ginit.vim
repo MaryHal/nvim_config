@@ -9,4 +9,4 @@ else
 endif
 
 set background=light
-colors plain
+colors base16-tomorrow-night

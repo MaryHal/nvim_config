@@ -55,8 +55,7 @@ call EnsureExists(&directory)
 " ====================
 call plug#begin(expand(s:dotvim . 'plugged'))
 
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 
 if !has('nvim')
     Plug 'roxma/vim-hug-neovim-rpc'
@@ -64,9 +63,9 @@ endif
 
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-rooter'
@@ -77,6 +76,9 @@ Plug 'mhinz/vim-startify'
 Plug 'MaryHal/Apprentice'
 Plug 'MaryHal/vim-colors-plain'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'axvr/photon.vim'
+Plug 'arzg/vim-corvine'
+Plug 'chriskempson/base16-vim'
 
 Plug 'junegunn/vim-peekaboo'
 
@@ -360,9 +362,9 @@ function! CustomStatusLine()
 
         set statusline+=\ %y
         set statusline+=%=%-14.(%l,%c%V%)\ %p%%\ 
-        set statusline+=\%#StatusLineOk#%{ALEStatus()}
-        set statusline+=\%#StatusLineError#%{ALEErrors()}
-        set statusline+=\%#StatusLineWarning#%{ALEWarnings()}
+        " set statusline+=\%#StatusLineOk#%{ALEStatus()}
+        " set statusline+=\%#StatusLineError#%{ALEErrors()}
+        " set statusline+=\%#StatusLineWarning#%{ALEWarnings()}
 
         set statusline+=%{coc#status()}\ 
     endif
@@ -428,7 +430,7 @@ let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'} ]
 " => Auto-Complete
 " ====================
 
-let g:coc_global_extensions = ['coc-snippets', 'coc-tsserver', 'coc-rls', 'coc-css']
+let g:coc_global_extensions = ['coc-snippets', 'coc-tsserver', 'coc-css']
 
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
@@ -448,94 +450,12 @@ nmap <silent> gr <Plug>(coc-references)
 
 let g:python3_host_prog = 'python'
 
-" ====================
-" => FZF
-" ====================
-" if s:is_windows && !s:is_cygwin && !s:is_msysgit
-"     let $TERM = ''
-" endif
+nnoremap <silent> <leader>u :<C-u>Clap buffers<CR>
+nnoremap <silent> <leader>f :<C-u>Clap files<CR>
+nnoremap <silent> <leader>p :<C-u>Clap gfiles<CR>
+nnoremap <silent> <C-p>     :<C-u>Clap gfiles<CR>
+nnoremap <silent> <leader>l :<C-u>Clap blines<CR>
+nnoremap <silent> <leader>x :<C-u>Clap command<CR>
+nnoremap <silent> <M-x>     :<C-u>Clap command<CR>
 
-let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
-
-let g:fzf_action = {
-            \ 'ctrl-t': 'tab split',
-            \ 'ctrl-x': 'split',
-            \ 'ctrl-v': 'vsplit' }
-
-" Default fzf layout
-" - down / up / left / right
-let g:fzf_layout = { 'down': '~40%' }
-
-" In Neovim, you can set up fzf window using a Vim command
-" let g:fzf_layout = { 'window': 'enew' }
-" let g:fzf_layout = { 'window': '-tabnew' }
-let g:fzf_layout = { 'window': 'botright 15split enew' }
-
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-            \ { 'fg':      ['fg', 'Normal'],
-            \ 'hl':      ['fg', 'String'],
-            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-            \ 'hl+':     ['fg', 'String'],
-            \ 'info':    ['fg', 'PreProc'],
-            \ 'prompt':  ['fg', 'Conditional'],
-            \ 'pointer': ['fg', 'Exception'],
-            \ 'marker':  ['fg', 'Keyword'],
-            \ 'spinner': ['fg', 'Label'],
-            \ 'header':  ['fg', 'Comment'] }
-
-" Enable per-command history.
-" CTRL-N and CTRL-P will be automatically bound to next-history and
-" previous-history instead of down and up. If you don't like the change,
-" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
-"
-let g:fzf_history_dir = expand(s:dotvim . '/cache/fzf_history')
-
-" [Buffers] Jump to the existing window if possible
-let g:fzf_buffers_jump = 1
-
-command! -bang -nargs=* Rg
-            \ call fzf#vim#grep(
-            \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-            \   <bang>0 ? fzf#vim#with_preview('up:60%')
-            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \   <bang>0)
-
-let g:rg_command = '
-            \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
-            \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf}"
-            \ -g "!{.git,node_modules,vendor}/*" '
-
-command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
-
-nnoremap <silent> <leader>u :<C-u>Buffers<CR>
-nnoremap <silent> <leader>f :<C-u>Files<CR>
-nnoremap <silent> <leader>p :<C-u>GFiles<CR>
-nnoremap <silent> <C-p>     :<C-u>GFiles<CR>
-nnoremap <silent> <leader>l :<C-u>BLines<CR>
-nnoremap <silent> <leader>x :<C-u>Commands<CR>
-nnoremap <silent> <M-x>     :<C-u>Commands<CR>
-
-if has('nvim')
-    let $FZF_DEFAULT_OPTS='--layout=reverse'
-    let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-
-    function! FloatingFZF()
-        let buf = nvim_create_buf(v:false, v:true)
-        call setbufvar(buf, '&signcolumn', 'no')
-
-        let height = &lines / 2
-        let width = float2nr(&columns - (&columns * 2 / 4))
-        let col = float2nr((&columns - width) / 2)
-
-        let opts = {
-                    \ 'relative': 'editor',
-                    \ 'row': &lines / 5,
-                    \ 'col': col,
-                    \ 'width': width,
-                    \ 'height': height
-                    \ }
-
-        call nvim_open_win(buf, v:true, opts)
-    endfunction
-endif
+let g:clap_theme = 'material_design_dark'
