@@ -458,4 +458,4 @@ nnoremap <silent> <leader>l :<C-u>Clap blines<CR>
 nnoremap <silent> <leader>x :<C-u>Clap command<CR>
 nnoremap <silent> <M-x>     :<C-u>Clap command<CR>
 
-let g:clap_theme = 'material_design_dark'
+" let g:clap_theme = 'material_design_dark'
