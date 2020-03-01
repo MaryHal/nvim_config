@@ -12,3 +12,5 @@ endif
 
 set background=light
 colors plain
+
+hi link ClapCurrentSelection DiffAdd
