@@ -73,12 +73,9 @@ Plug 'mbbill/undotree'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'mhinz/vim-startify'
 
-Plug 'MaryHal/Apprentice'
-Plug 'MaryHal/vim-colors-plain'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'axvr/photon.vim'
+Plug 'andreypopp/vim-colors-plain'
 Plug 'arzg/vim-corvine'
-Plug 'chriskempson/base16-vim'
+Plug 'danishprakash/vim-yami'
 
 Plug 'junegunn/vim-peekaboo'
 

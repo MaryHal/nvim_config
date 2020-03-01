@@ -1,7 +1,7 @@
 if has('nvim')
     if exists('g:GuiLoaded')
         set guifont=Iosevka\ TermLig\ SS05:h9
-        GuiLinespace 1
+        GuiLinespace 2
         GuiTabline 0
         GuiPopupmenu 0
     endif
@@ -10,5 +10,5 @@ else
     set guioptions=acg
 endif
 
-" set background=light
-colors base16-tomorrow-night
+set background=light
+colors plain
