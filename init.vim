@@ -304,6 +304,7 @@ nnoremap <silent> <leader><leader> "*
 vnoremap <silent> <leader><leader> "*
 
 nnoremap <silent> <leader>tb <C-u>:let &background = (&background == "dark"? "light" : "dark")<CR>
+nnoremap <silent> <leader>tn <C-u>:set nu!<CR>
 
 cmap W!! w !sudo tee % >/dev/null
 
