@@ -232,7 +232,6 @@ endfunction
 " => Autocommands
 " ====================
 if has('autocmd')
-    " Reset autogroup
     augroup MyAutoCmd
         autocmd!
     augroup END
@@ -303,6 +302,8 @@ nnoremap Y yg_
 
 nnoremap <silent> <leader><leader> "*
 vnoremap <silent> <leader><leader> "*
+
+nnoremap <silent> <leader>tb <C-u>:let &background = (&background == "dark"? "light" : "dark")<CR>
 
 cmap W!! w !sudo tee % >/dev/null
 
