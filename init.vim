@@ -14,7 +14,7 @@ else
     let s:dotvim=expand("~/.vim/")
 endif
 
-let s:is_gui = exists('g:gui_oni') || has('gui_running') || strlen(&term) == 0 || &term ==? 'builtin_gui'
+let s:is_gui = has('gui_running') || strlen(&term) == 0 || &term ==? 'builtin_gui'
 
 " ====================
 " => Files and Backups
