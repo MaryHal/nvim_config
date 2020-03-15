@@ -136,7 +136,6 @@ set confirm
 " Don't complete from other buffer
 set complete=.
 
-" Set 3 lines to pad the cursor - when moving vertical..
 set scrolloff=10
 set sidescrolloff=5
 
@@ -247,12 +246,6 @@ set splitright
 set splitbelow
 
 set switchbuf=usetab
-
-" move lines around
-nnoremap <leader>j :m+<cr>==
-nnoremap <leader>k :m-2<cr>==
-xnoremap <leader>j :m'>+<cr>gv=gv
-xnoremap <leader>k :m-2<cr>gv=gv
 
 nmap K kJ
 
