@@ -8,12 +8,7 @@ let s:is_msysgit = (has('win32') || has('win64')) && $TERM ==? 'cygwin'
 let s:is_tmux = !empty($TMUX)
 let s:is_ssh = !empty($SSH_TTY)
 
-if s:is_windows && !s:is_cygwin && !s:is_msysgit
-    let s:dotvim=expand("~/AppData/Local/nvim/")
-else
-    let s:dotvim=expand("~/.vim/")
-endif
-
+let s:dotvim=expand("~/.config/nvim/")
 let s:is_gui = has('gui_running') || strlen(&term) == 0 || &term ==? 'builtin_gui'
 
 " ====================
