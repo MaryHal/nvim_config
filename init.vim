@@ -70,7 +70,7 @@ Plug 'mhinz/vim-startify'
 
 Plug 'andreypopp/vim-colors-plain'
 Plug 'arzg/vim-corvine'
-Plug 'danishprakash/vim-yami'
+Plug 'ayu-theme/ayu-vim'
 
 Plug 'junegunn/vim-peekaboo'
 
@@ -446,3 +446,28 @@ nnoremap <silent> <leader>x :<C-u>Clap command<CR>
 nnoremap <silent> <M-x>     :<C-u>Clap command<CR>
 
 " let g:clap_theme = 'material_design_dark'
+
+if has('nvim')
+    if exists('g:GuiLoaded')
+        set guifont=Iosevka\ Term\ SS05:h9
+        GuiLinespace 2
+        GuiTabline 0
+        GuiPopupmenu 0
+    endif
+    if exists('g:neovide')
+        set guifont=Iosevka\ Term\ SS05:h13
+    endif
+else
+    set guifont=Sarasa_Mono_J:h9
+    set guioptions=acg
+endif
+
+colors plain
+set background=light
+
+hi link ClapCurrentSelection DiffAdd
+hi StatusLine gui=NONE
+hi StatusLineNC gui=NONE
+hi StatusLineError gui=NONE
+hi StatusLineOk gui=NONE
+hi StatusLineNC gui=NONE
