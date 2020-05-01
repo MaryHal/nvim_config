@@ -455,7 +455,8 @@ if has('nvim')
         GuiPopupmenu 0
     endif
     if exists('g:neovide')
-        set guifont=Iosevka\ Term\ SS05:h13
+        set guifont=Iosevka\ Term\ SS05:h12
+        let g:neovide_cursor_antialiasing = v:false
     endif
 else
     set guifont=Sarasa_Mono_J:h9
