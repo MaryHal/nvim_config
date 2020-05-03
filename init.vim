@@ -59,6 +59,7 @@ endif
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'liuchengxu/eleline.vim'
 
 " Plug 'w0rp/ale'
 
@@ -361,7 +362,7 @@ highlight link CocErrorSign StatusLineError
 highlight link CocWarningSign StatusLineWarning
 highlight link CocInfoSign StatusLineOk
 
-exec CustomStatusLine()
+" exec CustomStatusLine()
 
 set laststatus=2
 
