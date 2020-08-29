@@ -60,6 +60,7 @@ Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'liuchengxu/eleline.vim'
+Plug 'liuchengxu/vim-which-key'
 
 " Plug 'w0rp/ale'
 
@@ -278,6 +279,7 @@ xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 " => Other Keys
 " ====================
 let mapleader = "\<Space>"
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 " " Fix broken vim regexes when searching
 " " nnoremap / /\v
@@ -304,8 +306,6 @@ silent! command -nargs=0 Wq x
 
 imap <C-BS> <C-W>
 cnoremap <C-BS> <C-W>
-
-nnoremap <C-G> <ESC>:<C-u>cclose<CR><ESC>
 
 " ====================
 " => User Interface
@@ -418,7 +418,7 @@ let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'} ]
 " => Auto-Complete
 " ====================
 
-let g:coc_global_extensions = ['coc-snippets', 'coc-tsserver', 'coc-css']
+let g:coc_global_extensions = ['coc-snippets', 'coc-tsserver', 'coc-html', 'coc-css']
 
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
@@ -435,6 +435,9 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 let g:python3_host_prog = 'python'
 
