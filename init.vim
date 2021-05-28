@@ -451,8 +451,10 @@ let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'} ]
 let g:python3_host_prog = 'python'
 
 nnoremap <silent> <leader>f <cmd>Telescope find_files<CR>
-nnoremap <silent> <leader>l <cmd>Telescope live_grep<cr>
-nnoremap <silent> <leader>b <cmd>Telescope buffers<cr>
+nnoremap <silent> <leader>l <cmd>Telescope live_grep<CR>
+nnoremap <silent> <leader>b <cmd>Telescope buffers<CR>
+
+nnoremap <silent> <A-x> <cmd>Telescope commands<CR>
 
 if has('nvim')
     if exists('g:GuiLoaded')
