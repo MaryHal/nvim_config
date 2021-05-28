@@ -62,16 +62,16 @@ if !has('nvim')
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
-Plug 'Shougo/neco-vim'
-Plug 'neoclide/coc-neco'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'Shougo/neco-vim'
+" Plug 'neoclide/coc-neco'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'liuchengxu/eleline.vim'
 Plug 'liuchengxu/vim-which-key'
 
 " Plug 'w0rp/ale'
 
-Plug 'nvim-treesitter/nvim-treesitter', {'branch': 'master', 'do': ':TSUpdate'}
-Plug 'mhinz/vim-signify'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'airblade/vim-rooter'
 Plug 'mbbill/undotree'
 Plug 'MattesGroeger/vim-bookmarks'
@@ -100,6 +100,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'romainl/vim-qf'
 Plug 'tpope/vim-unimpaired'
 Plug 'justinmk/vim-gtfo'
+Plug 'ojroques/nvim-bufdel'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'rust-lang/rust.vim'
@@ -362,13 +363,13 @@ function! CustomStatusLine()
         " set statusline+=\%#StatusLineError#%{ALEErrors()}
         " set statusline+=\%#StatusLineWarning#%{ALEWarnings()}
 
-        set statusline+=%{coc#status()}\ 
+        " set statusline+=%{coc#status()}\ 
     endif
 endfunction
 
-highlight link CocErrorSign StatusLineError
-highlight link CocWarningSign StatusLineWarning
-highlight link CocInfoSign StatusLineOk
+" highlight link CocErrorSign StatusLineError
+" highlight link CocWarningSign StatusLineWarning
+" highlight link CocInfoSign StatusLineOk
 
 " exec CustomStatusLine()
 
@@ -426,26 +427,26 @@ let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'} ]
 " => Auto-Complete
 " ====================
 
-let g:coc_global_extensions = ['coc-snippets', 'coc-tsserver', 'coc-html', 'coc-css']
+" let g:coc_global_extensions = ['coc-snippets', 'coc-tsserver', 'coc-html', 'coc-css']
 
-command! -nargs=0 Format :call CocAction('format')
-command! -nargs=? Fold :call CocAction('fold', <f-args>)
+" command! -nargs=0 Format :call CocAction('format')
+" command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+" " Remap for do codeAction of current line
+" nmap <leader>ac  <Plug>(coc-codeaction)
 
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
+" " Fix autofix problem of current line
+" nmap <leader>qf  <Plug>(coc-fix-current)
 
-inoremap <silent><expr> <c-space> coc#refresh()
+" inoremap <silent><expr> <c-space> coc#refresh()
 
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
 
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" " Highlight the symbol and its references when holding the cursor.
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 let g:python3_host_prog = 'python'
 
@@ -489,9 +490,9 @@ require'nvim-treesitter.configs'.setup {
   rainbow = { enable = true, },
 }
 
+require('gitsigns').setup()
+
 local actions = require('telescope.actions')
--- Global remapping
-------------------------------
 require('telescope').setup{
   defaults = {
     mappings = {
