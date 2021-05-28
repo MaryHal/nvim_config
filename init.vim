@@ -1,4 +1,3 @@
-" ====================
 " => Pre-init
 " ====================
 let s:is_cygwin = has('win32unix') || has('win64unix')
@@ -10,6 +9,8 @@ let s:is_ssh = !empty($SSH_TTY)
 
 let s:dotvim=expand("~/.config/nvim/")
 let s:is_gui = has('gui_running') || strlen(&term) == 0 || &term ==? 'builtin_gui'
+
+lan en_US
 
 " ====================
 " => Files and Backups
@@ -50,7 +51,12 @@ call EnsureExists(&directory)
 " ====================
 call plug#begin(expand(s:dotvim . 'plugged'))
 
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+" dependencies
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+
+" telescope
+Plug 'nvim-telescope/telescope.nvim'
 
 if !has('nvim')
     Plug 'roxma/vim-hug-neovim-rpc'
@@ -64,6 +70,7 @@ Plug 'liuchengxu/vim-which-key'
 
 " Plug 'w0rp/ale'
 
+Plug 'nvim-treesitter/nvim-treesitter', {'branch': 'master', 'do': ':TSUpdate'}
 Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-rooter'
 Plug 'mbbill/undotree'
@@ -280,6 +287,7 @@ xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 " ====================
 let mapleader = "\<Space>"
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+let g:which_key_position = 'top'
 
 " " Fix broken vim regexes when searching
 " " nnoremap / /\v
@@ -441,15 +449,9 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 let g:python3_host_prog = 'python'
 
-nnoremap <silent> <leader>u :<C-u>Clap buffers<CR>
-nnoremap <silent> <leader>f :<C-u>Clap files<CR>
-nnoremap <silent> <leader>p :<C-u>Clap gfiles<CR>
-nnoremap <silent> <C-p>     :<C-u>Clap gfiles<CR>
-nnoremap <silent> <leader>l :<C-u>Clap blines<CR>
-nnoremap <silent> <leader>x :<C-u>Clap command<CR>
-nnoremap <silent> <M-x>     :<C-u>Clap command<CR>
-
-" let g:clap_theme = 'material_design_dark'
+nnoremap <silent> <leader>f <cmd>Telescope find_files<CR>
+nnoremap <silent> <leader>l <cmd>Telescope live_grep<cr>
+nnoremap <silent> <leader>b <cmd>Telescope buffers<cr>
 
 if has('nvim')
     if exists('g:GuiLoaded')
@@ -459,8 +461,8 @@ if has('nvim')
         GuiPopupmenu 0
     endif
     if exists('g:neovide')
-        set guifont=Iosevka\ Term\ SS05:h12
-        let g:neovide_cursor_antialiasing = v:false
+        set guifont=Iosevka\ Term\ Slab:h13
+        let g:neovide_cursor_antialiasing = v:true
     endif
 else
     set guifont=Sarasa_Mono_J:h9
@@ -476,3 +478,29 @@ hi StatusLineNC gui=NONE
 hi StatusLineError gui=NONE
 hi StatusLineOk gui=NONE
 hi StatusLineNC gui=NONE
+
+lua <<EOF
+require 'nvim-treesitter.install'.compilers = { "clang" }
+require'nvim-treesitter.configs'.setup {
+  -- "all", "maintained" or a list
+  ensure_installed = "maintained",
+  highlight = { enable = true, },
+  indent = { enable = false, },
+  rainbow = { enable = true, },
+}
+
+local actions = require('telescope.actions')
+-- Global remapping
+------------------------------
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-k>"] = actions.move_selection_previous,
+        ["<C-j>"] = actions.move_selection_next,
+      },
+    },
+  }
+}
+EOF
+
