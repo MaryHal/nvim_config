@@ -65,8 +65,9 @@ endif
 " Plug 'Shougo/neco-vim'
 " Plug 'neoclide/coc-neco'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'liuchengxu/eleline.vim'
-Plug 'liuchengxu/vim-which-key'
+Plug 'folke/which-key.nvim'
 
 " Plug 'w0rp/ale'
 
@@ -287,8 +288,6 @@ xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 " => Other Keys
 " ====================
 let mapleader = "\<Space>"
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-let g:which_key_position = 'top'
 
 " " Fix broken vim regexes when searching
 " " nnoremap / /\v
@@ -483,6 +482,8 @@ hi StatusLineOk gui=NONE
 hi StatusLineNC gui=NONE
 
 lua <<EOF
+require("which-key").setup{}
+
 require 'nvim-treesitter.install'.compilers = { "clang" }
 require'nvim-treesitter.configs'.setup {
   -- "all", "maintained" or a list
