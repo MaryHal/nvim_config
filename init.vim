@@ -85,6 +85,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
+Plug 'TimUntersberger/neogit'
 
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/vim-edgemotion'
@@ -486,6 +487,9 @@ require'nvim-treesitter.configs'.setup {
   indent = { enable = false, },
   rainbow = { enable = true, },
 }
+
+local neogit = require('neogit')
+neogit.setup {}
 
 require'lspconfig'.rust_analyzer.setup{}
 
