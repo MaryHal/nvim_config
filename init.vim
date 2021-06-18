@@ -78,8 +78,6 @@ Plug 'andreypopp/vim-colors-plain'
 Plug 'arzg/vim-corvine'
 Plug 'ayu-theme/ayu-vim'
 
-Plug 'junegunn/vim-peekaboo'
-
 Plug 'lambdalisue/gina.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
