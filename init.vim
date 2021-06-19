@@ -75,10 +75,7 @@ Plug 'MattesGroeger/vim-bookmarks'
 Plug 'mhinz/vim-startify'
 
 Plug 'andreypopp/vim-colors-plain'
-Plug 'arzg/vim-corvine'
-Plug 'ayu-theme/ayu-vim'
 
-Plug 'lambdalisue/gina.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-rsi'
@@ -344,53 +341,6 @@ hi StatusLineNC gui=NONE
 " ====================
 " => Statusline
 " ====================
-function! CustomStatusLine()
-    " let &statusline=" %{winnr('$')>1?'['.winnr().'/'.winnr('$')"
-    "             \ . ".(winnr('#')==winnr()?'#':'').']':''}\ "
-    "             \ . "%{(&previewwindow?'[preview] ':'').expand('%:t:.')} "
-    "             \ . "\ %=%m%y%{'['.(&fenc!=''?&fenc:&enc).','.&ff.']'}"
-    "             \ . "%{printf('  %4d/%d',line('.'),line('$'))}\ "
-    if has('statusline')
-        function! ALEWarnings() abort
-            let l:counts = ale#statusline#Count(bufnr(''))
-            let l:all_errors = l:counts.error + l:counts.style_error
-            let l:all_non_errors = l:counts.total - l:all_errors
-            return l:counts.total == 0 ? '' : printf('  W:%d ', all_non_errors)
-        endfunction
-
-        function! ALEErrors() abort
-            let l:counts = ale#statusline#Count(bufnr(''))
-            let l:all_errors = l:counts.error + l:counts.style_error
-            let l:all_non_errors = l:counts.total - l:all_errors
-            return l:counts.total == 0 ? '' : printf(' E:%d ', all_errors)
-        endfunction
-
-        function! ALEStatus() abort
-            let l:counts = ale#statusline#Count(bufnr(''))
-            let l:all_errors = l:counts.error + l:counts.style_error
-            let l:all_non_errors = l:counts.total - l:all_errors
-            return l:counts.total == 0 ? ' ok ' : ''
-        endfunction
-
-        set statusline=\ %<%f
-        set statusline+=%w%h%m%r
-
-        set statusline+=\ %y
-        set statusline+=%=%-14.(%l,%c%V%)\ %p%%\ 
-        " set statusline+=\%#StatusLineOk#%{ALEStatus()}
-        " set statusline+=\%#StatusLineError#%{ALEErrors()}
-        " set statusline+=\%#StatusLineWarning#%{ALEWarnings()}
-
-        " set statusline+=%{coc#status()}\ 
-    endif
-endfunction
-
-" highlight link CocErrorSign StatusLineError
-" highlight link CocWarningSign StatusLineWarning
-" highlight link CocInfoSign StatusLineOk
-
-" exec CustomStatusLine()
-
 set laststatus=2
 
 " Show incomplete commands
@@ -411,10 +361,6 @@ nnoremap          <leader>s :<C-u>Startify<CR>
 
 map <C-j> <Plug>(edgemotion-j)
 map <C-k> <Plug>(edgemotion-k)
-
-let g:EasyMotion_do_mapping = 0
-let g:EasyMotion_smartcase = 1
-nmap <leader>w <Plug>(easymotion-bd-f2)
 
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
