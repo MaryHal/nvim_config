@@ -68,7 +68,7 @@ Plug 'folke/which-key.nvim'
 " Plug 'w0rp/ale'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-Plug 'lewis6991/gitsigns.nvim'
+Plug 'lewis6991/gitsigns.nvim', { 'branch': 'main' }
 Plug 'airblade/vim-rooter'
 Plug 'mbbill/undotree'
 Plug 'MattesGroeger/vim-bookmarks'
@@ -82,7 +82,6 @@ Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
 Plug 'TimUntersberger/neogit'
 
-Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/vim-edgemotion'
 Plug 'haya14busa/incsearch.vim'
 Plug 'machakann/vim-sandwich'
