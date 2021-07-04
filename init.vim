@@ -96,6 +96,7 @@ Plug 'ojroques/nvim-bufdel'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'rust-lang/rust.vim'
+Plug 'kristijanhusak/orgmode.nvim'
 
 Plug 'editorconfig/editorconfig-vim'
 
@@ -384,7 +385,7 @@ augroup matchup_highlight
     autocmd ColorScheme * hi MatchParen gui=italic cterm=italic
 augroup END
 
-let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'} ]
+let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'}, {'n': '~/org/notes.org'} ]
 
 " ====================
 " => Auto-Complete
@@ -474,5 +475,10 @@ require('telescope').setup{
     },
   }
 }
+
+require('orgmode').setup({
+  org_agenda_files = {'~/org/*'},
+  org_default_notes_file = '~/org/notes.org',
+})
 EOF
 
