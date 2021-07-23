@@ -237,13 +237,12 @@ xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 " ====================
 let mapleader = "\<Space>"
 
-" " Fix broken vim regexes when searching
-" " nnoremap / /\v
-" " vnoremap / /\v
-" " nnoremap ? ?\v
-" " vnoremap ? ?\v
-" " cnoremap s/ s/\v
-" set magic
+" Fix broken vim regexes when searching
+nnoremap / /\v
+vnoremap / /\v
+nnoremap ? ?\v
+vnoremap ? ?\v
+cnoremap s/ s/\v
 
 nnoremap Y yg_
 
