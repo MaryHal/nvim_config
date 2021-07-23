@@ -72,8 +72,6 @@ Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
 Plug 'TimUntersberger/neogit'
 
-Plug 'haya14busa/vim-edgemotion'
-Plug 'haya14busa/incsearch.vim'
 Plug 'machakann/vim-sandwich'
 
 Plug 'andymass/vim-matchup'
@@ -289,7 +287,6 @@ endif
 colors plain
 set background=light
 
-hi link ClapCurrentSelection DiffAdd
 hi StatusLine gui=NONE
 hi StatusLineNC gui=NONE
 hi StatusLineError gui=NONE
@@ -315,21 +312,6 @@ nnoremap          <leader>c :<C-u>cd %:p:h<CR>
 nnoremap          <leader>g :<C-u>Gstatus<CR>
 nnoremap          <leader>s :<C-u>Startify<CR>
 
-map <C-j> <Plug>(edgemotion-j)
-map <C-k> <Plug>(edgemotion-k)
-
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-
-let g:incsearch#auto_nohlsearch = 1
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
-
 command! -nargs=0 Jq :%!jq "."
 
 let g:targets_argOpening = '[({[]'
@@ -342,32 +324,6 @@ augroup matchup_highlight
 augroup END
 
 let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'}, {'n': '~/org/notes.org'} ]
-
-" ====================
-" => Auto-Complete
-" ====================
-
-" let g:coc_global_extensions = ['coc-snippets', 'coc-tsserver', 'coc-html', 'coc-css']
-
-" command! -nargs=0 Format :call CocAction('format')
-" command! -nargs=? Fold :call CocAction('fold', <f-args>)
-
-" " Remap for do codeAction of current line
-" nmap <leader>ac  <Plug>(coc-codeaction)
-
-" " Fix autofix problem of current line
-" nmap <leader>qf  <Plug>(coc-fix-current)
-
-" inoremap <silent><expr> <c-space> coc#refresh()
-
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
-
-" " Highlight the symbol and its references when holding the cursor.
-" autocmd CursorHold * silent call CocActionAsync('highlight')
-
 let g:python3_host_prog = 'python'
 
 nnoremap <silent> <leader>f <cmd>Telescope find_files<CR>
