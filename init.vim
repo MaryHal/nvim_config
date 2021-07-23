@@ -67,7 +67,7 @@ Plug 'folke/which-key.nvim'
 
 " Plug 'w0rp/ale'
 
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'nvim-treesitter/nvim-treesitter' " , {'do': ':TSUpdate'}
 Plug 'lewis6991/gitsigns.nvim', { 'branch': 'main' }
 Plug 'airblade/vim-rooter'
 Plug 'mbbill/undotree'
