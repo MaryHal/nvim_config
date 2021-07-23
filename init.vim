@@ -327,6 +327,8 @@ nnoremap <silent> <leader>b <cmd>Telescope buffers<CR>
 
 nnoremap <silent> <A-x> <cmd>Telescope commands<CR>
 
+runtime macros/sandwich/keymap/surround.vim
+
 lua <<EOF
 require("which-key").setup{}
 
