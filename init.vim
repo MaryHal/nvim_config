@@ -64,10 +64,9 @@ Plug 'mhinz/vim-startify'
 Plug 'andreypopp/vim-colors-plain'
 
 Plug 'tpope/vim-fugitive'
+Plug 'TimUntersberger/neogit'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-rsi'
-Plug 'tpope/vim-surround'
-Plug 'TimUntersberger/neogit'
 
 Plug 'machakann/vim-sandwich'
 
