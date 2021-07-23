@@ -1,14 +1,4 @@
-" => Pre-init
-" ====================
-let s:is_cygwin = has('win32unix') || has('win64unix')
-let s:is_windows = has('win32') || has('win64')
-let s:is_mac = has('gui_macvim') || has('mac')
-let s:is_msysgit = (has('win32') || has('win64')) && $TERM ==? 'cygwin'
-let s:is_tmux = !empty($TMUX)
-let s:is_ssh = !empty($SSH_TTY)
-
 let s:dotvim=expand("~/.config/nvim/")
-let s:is_gui = has('gui_running') || strlen(&term) == 0 || &term ==? 'builtin_gui'
 
 lan en_US
 
@@ -109,7 +99,6 @@ set encoding=utf-8
 
 set hidden
 
-" Allow Mouse Usage
 set mouse=a
 set mousehide
 
@@ -145,13 +134,11 @@ set wildmenu
 set wildmode=list,full
 set wildignorecase
 
-" Always show current position
 set ruler 
 
 " Allow backspacing everything in insert mode
 set backspace=indent,eol,start
 
-" Searching
 set ignorecase " Ignore case when searching
 set smartcase  " If there are any capitalized letters, case sensitive search
 
@@ -163,13 +150,8 @@ if has('nvim')
     set inccommand=nosplit
 endif
 
-if executable('rg')
-    set grepprg=rg\ --vimgrep
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
-elseif executable('ag')
-    set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
-    set grepformat=%f:%l:%c:%m
-endif
+set grepprg=rg\ --vimgrep
+set grepformat=%f:%l:%c:%m,%f:%l:%m
 
 set showmatch
 set matchtime=2
@@ -200,30 +182,6 @@ set whichwrap+=h,l,<,>,[,]
 set linebreak
 
 set formatoptions=ql
-
-" ====================
-" => Functions
-" ====================
-function! RemoveBackground() abort
-    if !s:is_gui
-        hi Normal ctermbg=NONE
-        hi Comment ctermbg=NONE
-        hi Constant ctermbg=NONE
-        hi Special ctermbg=NONE
-        hi Identifier ctermbg=NONE
-        hi Statement ctermbg=NONE
-        hi PreProc ctermbg=NONE
-        hi Type ctermbg=NONE
-        hi Underlined ctermbg=NONE
-        hi Todo ctermbg=NONE
-        hi String ctermbg=NONE
-        hi Function ctermbg=NONE
-        hi Conditional ctermbg=NONE
-        hi Repeat ctermbg=NONE
-        hi Operator ctermbg=NONE
-        hi Structure ctermbg=NONE
-    endif
-endfunction
 
 " ====================
 " => Autocommands
@@ -342,8 +300,6 @@ hi StatusLineNC gui=NONE
 " => Statusline
 " ====================
 set laststatus=2
-
-" Show incomplete commands
 set showcmd
 
 " ====================
