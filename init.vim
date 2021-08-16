@@ -41,7 +41,6 @@ call EnsureExists(&directory)
 " ====================
 call plug#begin(expand(s:dotvim . 'plugged'))
 
-" dependencies
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 
@@ -57,7 +56,7 @@ Plug 'folke/which-key.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter' " , {'do': ':TSUpdate'}
 Plug 'lewis6991/gitsigns.nvim', { 'branch': 'main' }
-Plug 'airblade/vim-rooter'
+Plug 'ahmedkhalf/project.nvim'
 Plug 'mbbill/undotree'
 Plug 'mhinz/vim-startify'
 
@@ -341,8 +340,10 @@ require'nvim-treesitter.configs'.setup {
   rainbow = { enable = true, },
 }
 
+require("project_nvim").setup{}
+
 local neogit = require('neogit')
-neogit.setup {}
+neogit.setup{}
 
 require'lspconfig'.rust_analyzer.setup{}
 
@@ -374,7 +375,9 @@ require'compe'.setup {
 require('gitsigns').setup()
 
 local actions = require('telescope.actions')
-require('telescope').setup{
+local telescope = require('telescope')
+
+telescope.setup{
   defaults = {
     mappings = {
       i = {
@@ -384,6 +387,8 @@ require('telescope').setup{
     },
   }
 }
+
+telescope.load_extension('projects')
 
 require('orgmode').setup({
   org_agenda_files = {'~/org/*'},
