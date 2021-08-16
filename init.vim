@@ -323,6 +323,7 @@ let g:python3_host_prog = 'python'
 nnoremap <silent> <leader>f <cmd>Telescope find_files<CR>
 nnoremap <silent> <leader>l <cmd>Telescope live_grep<CR>
 nnoremap <silent> <leader>b <cmd>Telescope buffers<CR>
+nnoremap <silent> <leader>p <cmd>Telescope projects<CR>
 
 nnoremap <silent> <A-x> <cmd>Telescope commands<CR>
 
