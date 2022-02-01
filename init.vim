@@ -263,8 +263,8 @@ syntax enable
 
 if has('nvim')
     if exists('g:GuiLoaded')
-        set guifont=Iosevka\ Term\ SS05:h9
-        GuiLinespace 2
+        set guifont=Rec\ Mono\ Duotone:h10
+        GuiLinespace 0
         GuiTabline 0
         GuiPopupmenu 0
     endif
