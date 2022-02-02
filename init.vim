@@ -307,8 +307,9 @@ nnoremap          <leader>s :<C-u>Startify<CR>
 
 command! -nargs=0 Jq :%!jq "."
 
-let g:targets_argOpening = '[({[]'
-let g:targets_argClosing = '[]})]'
+autocmd User targets#mappings#user call targets#mappings#extend({
+    \ 'b': {'pair': [{'o':'(', 'c':')'}, {'o':'[', 'c':']'}, {'o':'{', 'c':'}'}]},
+    \ })
 
 let g:matchup_matchparen_nomode = 'i'
 augroup matchup_highlight
