@@ -158,6 +158,8 @@ set lazyredraw
 
 set updatetime=300
 
+set shellslash
+
 " ====================
 " => Formatting
 " ====================
@@ -465,7 +467,7 @@ local function sep(opts, show)
 
   -- ''
   -- ''
-  local sep = '  ' -- '█'
+  local sep = '  ' -- '█'
 
   return sep_color .. sep .. '%*'
 end
@@ -586,6 +588,7 @@ StatusLine.active = function()
     show_item('%w', nil, vim.wo.previewwindow),
     show_item('%r', nil, vim.bo.readonly),
     show_item('%q', nil, vim.bo.buftype == 'quickfix'),
+    show_item(gps.get_location(), sec_2, gps.is_available()),
     '%<',
     '%=',
     -- show_item(search, vim.tbl_extend('keep', { side = 'right' }, sec_2), search ~= ''),
