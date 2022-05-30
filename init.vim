@@ -429,7 +429,7 @@ function statusline.set_colors()
   vim.cmd('hi StErrSep guifg=' .. c.error_fg .. ' guibg=' .. c.statusline_bg .. ' gui=NONE')
   vim.cmd('hi StWarn guibg=' .. c.warning_fg .. ' guifg=' .. c.normal_bg .. ' gui=bold')
   vim.cmd('hi StWarnSep guifg=' .. c.warning_fg .. ' guibg=' .. c.statusline_bg .. ' gui=NONE')
-  vim.cmd('hi StMode guibg=' .. c.statusline_bg .. ' guifg=' .. c.normal_bg .. ' gui=NONE')
+  vim.cmd('hi StMode guibg=' .. c.statusline_bg .. ' guifg=' .. c.normal_bg .. ' gui=bold')
   vim.cmd('hi StModeSep guibg=' .. c.statusline_bg .. ' guifg=' .. c.normal_bg .. ' gui=NONE')
 end
 
@@ -460,9 +460,8 @@ local function sep(opts, show)
   if not show then
     return ''
   end
+
   local sep_color = opts.sep_color or '%#StSep#'
-  local color = opts.color or '%#StItem#'
-  local side = opts.side or 'left'
 
   -- ''
   -- ''
@@ -589,7 +588,7 @@ StatusLine.active = function()
     show_item('%q', nil, vim.bo.buftype == 'quickfix'),
     '%<',
     '%=',
-    show_item(search, vim.tbl_extend('keep', { side = 'right' }, sec_2), search ~= ''),
+    -- show_item(search, vim.tbl_extend('keep', { side = 'right' }, sec_2), search ~= ''),
     sep(st_mode_right),
     show_item(ft, vim.tbl_extend('keep', { side = 'right' }, sec_2), ft ~= ''),
     sep(st_mode_right),
