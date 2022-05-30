@@ -4,7 +4,6 @@ let s:dotvim=expand("~/.config/nvim/")
 " => Files and Backups
 " ====================
 set sessionoptions-=options
-set sessionoptions-=folds
 
 if has('persistent_undo')
     execute "set undodir=" . expand(s:dotvim . '/cache/undo/')
@@ -77,6 +76,7 @@ Plug 'ojroques/nvim-bufdel', { 'branch': 'main' }
 
 Plug 'sheerun/vim-polyglot'
 Plug 'rust-lang/rust.vim'
+Plug 'nvim-orgmode/orgmode'
 
 Plug 'editorconfig/editorconfig-vim'
 
@@ -96,6 +96,8 @@ set autoread
 set autowrite
 
 set foldcolumn=0
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
 " ====================
 " => User Interface
@@ -333,10 +335,22 @@ require("which-key").setup{}
 require 'nvim-treesitter.install'.compilers = { "clang" }
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
-  highlight = { enable = true, },
+  highlight = {
+    enable = true,
+    disable = {'org'},
+    additional_vim_regex_highlighting = {'org'},
+  },
   indent = { enable = false, },
   rainbow = { enable = true, },
 }
+
+-- Load custom tree-sitter grammar for org filetype
+require('orgmode').setup_ts_grammar()
+
+require('orgmode').setup({
+  org_agenda_files = {'~/org/*'},
+  org_default_notes_file = '~/org/todo.org',
+})
 
 require("project_nvim").setup{}
 
@@ -367,6 +381,7 @@ require'compe'.setup {
     nvim_lua = true;
     -- vsnip = true;
     -- ultisnips = true;
+    orgmode = true;
   };
 }
 
