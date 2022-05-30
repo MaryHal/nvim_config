@@ -50,11 +50,11 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/lsp-status.nvim'
 
 Plug 'liuchengxu/eleline.vim'
-Plug 'folke/which-key.nvim'
+Plug 'folke/which-key.nvim', { 'branch': 'main' }
 
 Plug 'nvim-treesitter/nvim-treesitter' " , {'do': ':TSUpdate'}
 Plug 'lewis6991/gitsigns.nvim', { 'branch': 'main' }
-Plug 'ahmedkhalf/project.nvim'
+Plug 'ahmedkhalf/project.nvim', { 'branch': 'main' }
 Plug 'mbbill/undotree'
 Plug 'mhinz/vim-startify'
 
@@ -73,7 +73,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'romainl/vim-qf'
 Plug 'tpope/vim-unimpaired'
 Plug 'justinmk/vim-gtfo'
-Plug 'ojroques/nvim-bufdel'
+Plug 'ojroques/nvim-bufdel', { 'branch': 'main' }
 
 Plug 'sheerun/vim-polyglot'
 Plug 'rust-lang/rust.vim'
