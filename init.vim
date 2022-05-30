@@ -300,7 +300,7 @@ vnoremap <silent> <leader>er :<C-u>@*<CR>
 
 " Change cwd to current buffer directory
 nnoremap          <leader>c :<C-u>cd %:p:h<CR>
-nnoremap          <leader>g :<C-u>Gstatus<CR>
+nnoremap          <leader>g :<C-u>Git<CR>
 nnoremap          <leader>s :<C-u>Startify<CR>
 
 command! -nargs=0 Jq :%!jq "."
