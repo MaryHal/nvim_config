@@ -466,7 +466,7 @@ local function sep(opts, show)
 
   -- ''
   -- ''
-  local sep = '  ' -- '█'
+  local sep = '  ' -- '█'
 
   return sep_color .. sep .. '%*'
 end
@@ -575,7 +575,7 @@ StatusLine.active = function()
   local err = lsp_status('ERROR')
   local warn = lsp_status('WARN')
   local statusline_sections = {
-    ' ',
+    ' 𑁍 ',
     show_item(mode, st_mode),
     sep(st_mode_right),
     show_item(git_status, sec_2, git_status ~= ''),
