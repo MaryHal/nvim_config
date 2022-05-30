@@ -332,8 +332,7 @@ require("which-key").setup{}
 
 require 'nvim-treesitter.install'.compilers = { "clang" }
 require'nvim-treesitter.configs'.setup {
-  -- "all", "maintained" or a list
-  ensure_installed = "maintained",
+  ensure_installed = "all",
   highlight = { enable = true, },
   indent = { enable = false, },
   rainbow = { enable = true, },
