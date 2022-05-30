@@ -483,7 +483,7 @@ vim.api.nvim_create_autocmd({ 'VimEnter', 'ColorScheme' }, {
   callback = statusline.set_colors,
 })
 
-local function show_item(item, opts, show)
+local function st_item(item, opts, show)
   opts = opts or {}
   if show == nil then
     show = true
@@ -619,29 +619,30 @@ StatusLine.active = function()
   local warn = lsp_status('WARN')
   local statusline_sections = {
     ' 𑁍 ',
-    show_item(mode, st_mode),
+    st_item(mode, st_mode),
     sep(st_mode_right),
-    show_item(git_status, sec_2, git_status ~= ''),
+    st_item(git_status, sec_2, git_status ~= ''),
     sep(st_mode_right),
-    show_item(get_path(), vim.bo.modified and st_err or sec_2),
-    show_item(' + ', st_err, vim.bo.modified),
-    show_item(' - ', st_err, not vim.bo.modifiable),
-    show_item('%w', nil, vim.wo.previewwindow),
-    show_item('%r', nil, vim.bo.readonly),
-    show_item('%q', nil, vim.bo.buftype == 'quickfix'),
+    st_item(get_path(), vim.bo.modified and st_err or sec_2),
+    st_item(' + ', st_err, vim.bo.modified),
+    st_item(' - ', st_err, not vim.bo.modifiable),
+    st_item('%w', nil, vim.wo.previewwindow),
+    st_item('%r', nil, vim.bo.readonly),
+    st_item('%q', nil, vim.bo.buftype == 'quickfix'),
     sep(st_mode_right),
-    show_item(gps.get_location(), sec_2, gps.is_available()),
+    st_item(gps.get_location(), sec_2, gps.is_available()),
     '%<',
     '%=',
-    -- show_item(search, vim.tbl_extend('keep', { side = 'right' }, sec_2), search ~= ''),
+    -- st_item(search, vim.tbl_extend('keep', { side = 'right' }, sec_2), search ~= ''),
     sep(st_mode_right),
-    show_item(ft, vim.tbl_extend('keep', { side = 'right' }, sec_2), ft ~= ''),
+    st_item(ft, sec_2, ft ~= ''),
     sep(st_mode_right),
-    show_item('%l:%c', st_mode_right),
+    st_item('%l:%c', st_mode_right),
     sep(st_mode_right),
-    show_item('%p%%', vim.tbl_extend('keep', { no_after = err == '' and warn == '' }, st_mode_right)),
-    show_item(err, vim.tbl_extend('keep', { no_after = warn == '' }, st_err_right), err ~= ''),
-    show_item(warn, st_warn, warn ~= ''),
+    st_item('%p%%', st_mode_right),
+    sep(st_mode_right, warn ~= '' or err ~= ''),
+    st_item(err, st_err_right, err ~= ''),
+    st_item(warn, st_warn, warn ~= ''),
     ' ',
     '%<',
   }
