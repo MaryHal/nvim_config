@@ -595,7 +595,7 @@ StatusLine.active = function()
     sep(st_mode_right),
     show_item('%l:%c', st_mode_right),
     sep(st_mode_right),
-    show_item('%p%%/%L', vim.tbl_extend('keep', { no_after = err == '' and warn == '' }, st_mode_right)),
+    show_item('%p%%', vim.tbl_extend('keep', { no_after = err == '' and warn == '' }, st_mode_right)),
     show_item(err, vim.tbl_extend('keep', { no_after = warn == '' }, st_err_right), err ~= ''),
     show_item(warn, st_warn, warn ~= ''),
     ' ',
