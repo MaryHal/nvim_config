@@ -1,7 +1,5 @@
 let s:dotvim=expand("~/.config/nvim/")
 
-lan en_US
-
 " ====================
 " => Files and Backups
 " ====================
